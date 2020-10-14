@@ -4,6 +4,7 @@ Aplikasi Perpustakaan
 
 + no_anggota : string
 + nama : string
++ alamat : string
 ----
 -----------------
 + meminjam(): void
