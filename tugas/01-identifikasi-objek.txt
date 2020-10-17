@@ -16,3 +16,18 @@ Aplikasi Perpustakaan
 ----------------------
 + tambahBuku() : void
 + cetakLaporan() : void
+
+[ User ]
+
++ username	: string
++ password	: string
+----------------------
++ login()		: void
++ lihatbuku()	: void
+
+[ Buku ]
+
++ kode_buku		: integer
++ judul_buku	: string
++ pengarang		: string
++ tahun_terbit	: integer
