@@ -15,3 +15,4 @@ Aplikasi Perpustakaan
 + alamat: string
 ----------------------
 + tambahBuku() : void
++ cetakLaporan() : void
