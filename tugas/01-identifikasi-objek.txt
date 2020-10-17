@@ -7,3 +7,11 @@ Aplikasi Perpustakaan
 + alamat : string
 -------------------
 + meminjam(): void
+
+
+[Petugas Perpustakaan]
++ nama 	: string
++ nip	: string
++ alamat: string
+----------------------
++ tambahBuku() : void
