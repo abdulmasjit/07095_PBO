@@ -2,15 +2,16 @@ package praktikum_modul1;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class main {
-    static ArrayList <Abdul07095_BukuEntity> dataBuku = new ArrayList();
-    static Scanner input = new Scanner(System.in);
+    ArrayList <Abdul07095_BukuEntity> dataBuku = new ArrayList();
+    Scanner input = new Scanner(System.in);
     
     public static void main(String[] args) {
+        main app = new main();
         System.out.println("Selamat Datang Di Sistem Informasi Perpustakaan !!");
-        viewMenu();
+        app.viewMenu();
     }
     
-    static void viewMenu(){
+    void viewMenu(){
         int pil;
         do{
             System.out.println("=== Menu Navigation ====");
@@ -39,7 +40,7 @@ public class main {
         }while (pil!=5);
     }
     
-    static void addBuku(){
+    void addBuku(){
         System.out.print("Input Kode Buku : ");
         String Abdul07095_kodeBuku = input.next();
         
@@ -57,7 +58,7 @@ public class main {
         System.out.print("Data Buku Berhasil Disimpan !!\n");
     }
     
-    static void viewListBuku(){
+    void viewListBuku(){
         if(dataBuku.size()>0){
             int no = 0;
             for (int i = 0; i < dataBuku.size(); i++) {
@@ -73,7 +74,7 @@ public class main {
         }
     }
     
-    static void editBuku(){
+    void editBuku(){
         if(dataBuku.size()>0){
             for (int i = 0; i < dataBuku.size(); i++) {
                 System.out.println("["+i+"] "+dataBuku.get(i).getJudul());
@@ -102,7 +103,7 @@ public class main {
         }
     }
     
-    static void deleteBuku(){
+    void deleteBuku(){
         if(dataBuku.size()>0){
             for (int i = 0; i < dataBuku.size(); i++) {
                 System.out.println("["+i+"] "+dataBuku.get(i).getJudul());
