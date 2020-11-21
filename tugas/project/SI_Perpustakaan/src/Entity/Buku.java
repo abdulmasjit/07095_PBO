@@ -2,7 +2,7 @@ package Entity;
 public class Buku {
     // Attribut    
     private String kode_buku, judul_buku, pengarang, tahun_terbit;
-    int stok;
+    private int stok;
     
     // Constructor
     public Buku(String kode_buku, String judul_buku, String pengarang, String tahun_terbit, int stok){
@@ -11,6 +11,10 @@ public class Buku {
         this.pengarang = pengarang;
         this.tahun_terbit = tahun_terbit;
         this.stok = stok;
+    }
+    
+    public Buku(){
+        
     }
     
     // Setter / Mutator
