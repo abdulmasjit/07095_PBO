@@ -13,10 +13,6 @@ public class Buku {
         this.stok = stok;
     }
     
-    public Buku(){
-        
-    }
-    
     // Setter / Mutator
     public void setKodeBuku(String kode_buku){
         this.kode_buku = kode_buku;
