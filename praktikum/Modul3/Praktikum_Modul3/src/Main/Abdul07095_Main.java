@@ -26,7 +26,7 @@ public class Abdul07095_Main {
         do{
             System.out.println("=== Menu Utama ====");
             System.out.println("1. Anggota");
-            System.out.println("2. Daftar Buku");
+            System.out.println("2. Buku");
             System.out.println("3. Peminjaman");
             System.out.println("4. Pengembalian");
             System.out.println("0. Keluar");
@@ -38,7 +38,7 @@ public class Abdul07095_Main {
                     menuAnggota();
                     break;
                 case 2 :
-                    viewBuku();
+                    menuBuku();
                     break;
                 case 3 : 
                     menuPeminjaman();
@@ -66,6 +66,27 @@ public class Abdul07095_Main {
                     break;
                 case 2 :
                     viewAnggota();
+                    break;
+            }
+        }while (pil!=0);
+    }
+    
+     public void menuBuku(){
+        int pil;
+        do{
+            System.out.println("=== Menu Buku ====");
+            System.out.println("1. Tambah Buku");
+            System.out.println("2. Daftar Buku");
+            System.out.println("0. Menu Utama");
+            System.out.print("Pilih : ");
+            pil = input.nextInt();
+
+            switch(pil){
+                case 1 :
+                    addBuku();
+                    break;
+                case 2 :
+                    viewBuku();
                     break;
             }
         }while (pil!=0);
@@ -109,29 +130,57 @@ public class Abdul07095_Main {
     }
     
     public void addAnggota(){
-        System.out.print("Input No ID : ");
-        String no_id = input.next();
-        
-        System.out.print("Input Nama : ");
-        String nama = input.next();
-        
-        System.out.print("Input No Telp : ");
-        String no_telp = input.next();
-        
-        for (int i = 0; i < ja.jenisAnggota.length; i++) {
-            System.out.println("["+i+"] "+ja.jenisAnggota[i]);
+        try {
+            System.out.print("Input No ID : ");
+            String no_id = input.next();
+
+            System.out.print("Input Nama : ");
+            String nama = input.next();
+
+            System.out.print("Input No Telp : ");
+            String no_telp = input.next();
+
+            for (int i = 0; i < ja.jenisAnggota.length; i++) {
+                System.out.println("["+i+"] "+ja.jenisAnggota[i]);
+            }
+            System.out.print("Pilih Jenis Anggota = ");
+            int jenis = input.nextInt();
+
+            // Add Object To Class   
+            anggota_c.insertAnggota(no_id, nama, no_telp, jenis);
+            System.out.print("Data Anggota Berhasil Disimpan !!\n");
+        } catch (Exception e) {
+            System.out.print("Simpan Anggota Gagal !!\n");
         }
-        System.out.print("Pilih Jenis Anggota = ");
-        int jenis = input.nextInt();
-        
-        // Add Object To Class   
-        anggota_c.insertAnggota(no_id, nama, no_telp, jenis);
-        System.out.print("Data Anggota Berhasil Disimpan !!\n");
     }
     
     // =================================== Buku =====================================
+    public void addBuku(){
+        try {
+            System.out.print("Input Kode Buku : ");
+            String kodeBuku = input.next();
+
+            System.out.print("Input Judul : ");
+            String judul = input.next();
+
+            System.out.print("Input Pengarang : ");
+            String pengarang = input.next();
+            
+            System.out.print("Input Tahun Terbit : ");
+            String tahunTerbit = input.next();
+            
+            System.out.print("Input Stok : ");
+            int stok = input.nextInt();
+
+            // Add Object To Class   
+            buku_c.insertBuku(kodeBuku, judul, pengarang, tahunTerbit, stok);
+            System.out.print("Data Buku Berhasil Disimpan !!\n");
+        } catch (Exception e) {
+            System.out.print("Simpan Buku Gagal !!\n");
+        }
+    }
+    
     public void viewBuku(){
-        buku_c.dataBukuSementara();
         if(buku_c.viewBuku().size()>0){
             for(int i = 0; i < buku_c.viewBuku().size(); i++){
                 System.out.println("Kode Buku : "+buku_c.viewBuku().get(i).getKodeBuku()
