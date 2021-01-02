@@ -16,4 +16,8 @@ public class Abdul07095_PeminjamanModel{
     public void insert(Object x) {
         listPeminjaman.add((Abdul07095_PeminjamanEntity) x);
     }
+    
+    public void update(int index, Object x) {
+        listPeminjaman.set(index ,(Abdul07095_PeminjamanEntity) x);
+    }
 }

@@ -36,6 +36,10 @@ public class Abdul07095_BukuController {
         buku_m.insert(data);
     }
     
+    public Abdul07095_BukuEntity getDetail(int index){
+        return buku_m.getListBuku().get(index);
+    }
+    
     public int cari(String kode){
         int result = -1;
         if(buku_m.getListBuku().size()>0){
@@ -51,7 +55,8 @@ public class Abdul07095_BukuController {
         return result;
     }
     
-    public int stokBuku(){
-        return 30;
-    }
+    
+//    public int stokBuku(){
+//        return 30;
+//    }
 }

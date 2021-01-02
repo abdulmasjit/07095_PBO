@@ -1,6 +1,7 @@
 package Main;
 import Entity.*;
 import Controller.*;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Abdul07095_Main {
@@ -9,6 +10,7 @@ public class Abdul07095_Main {
     Abdul07095_BukuController buku_c = new Abdul07095_BukuController();
     Abdul07095_PeminjamanController pinjam_c = new Abdul07095_PeminjamanController();
     Abdul07095_JenisAnggotaEntity ja = new Abdul07095_JenisAnggotaEntity();
+    String [] statusPeminjaman = {"Belum Dikembalikan", "Dikembalikan"};
     
     public static void main(String[] args) {
         Abdul07095_Main app = new Abdul07095_Main();
@@ -18,6 +20,8 @@ public class Abdul07095_Main {
     
     // =================================== Menu Navagation =====================================
     public void viewMenu(){
+        anggota_c.dataAnggotaSementara();
+        buku_c.dataBukuSementara();
         int pil;
         do{
             System.out.println("=== Menu Utama ====");
@@ -40,7 +44,7 @@ public class Abdul07095_Main {
                     menuPeminjaman();
                     break;
                 case 4 : 
-                    System.out.println("Pengembalian");
+                    pengembalian();
                     break;
             }
         }while (pil!=0);
@@ -82,7 +86,7 @@ public class Abdul07095_Main {
                     peminjaman();
                     break;
                 case 2 :
-                    System.out.println("Menu Daftar Peminjaman");
+                    viewListPeminjaman();
                     break;
             }
         }while (pil!=0);
@@ -136,7 +140,7 @@ public class Abdul07095_Main {
                                    +"\nTahun Terbit : "+buku_c.viewBuku().get(i).getTahunTerbit()
                                    +"\nStok : "+buku_c.viewBuku().get(i).getStok()
                 );
-                System.out.println("======================================================");
+                System.out.println("------------------------------------------------------------");
             }
         }else{
             System.out.println("Data Buku Kosong\n");
@@ -148,19 +152,21 @@ public class Abdul07095_Main {
         System.out.print("Masukan ID Anggota : ");
         String noId = input.next();
         int cekAnggota = anggota_c.cari(noId);
+        int cekBuku = -1;
+        
         if(cekAnggota==-1){
             System.out.println("Ooops, Anggota tidak ditemukan ! ");
         }else{
+            System.out.println("ID Anggota : "+anggota_c.getDetail(cekAnggota).getNoId());
             System.out.println("Nama Anggota : "+anggota_c.getDetail(cekAnggota).getNama());
-            System.out.println("=========================================");                
+            System.out.println("-------------------------------------------------------------------------------");                
             // Cek Tanggungan Peminjaman            
             int cekPeminjaman = pinjam_c.cekPeminjamanAnggota(noId, "0");
             if(cekPeminjaman != -1){
-                System.out.println("Ooops, Anggota masih mempunyai tanggungan peminjaman ! ");
+                System.out.println("Ooops, Anggota masih mempunyai tanggungan peminjaman ! \n");
             }else{
                 // Pengecekan Buku
                 String ulang = "";
-                int cekBuku;
                 do{
                     System.out.print("Masukan Kode Buku : ");
                     String kodeBuku = input.next();
@@ -170,17 +176,135 @@ public class Abdul07095_Main {
                         System.out.print("Cari buku lagi (y/t) ? ");
                         ulang = input.next();
                     }else{
-                        ulang = "t";
+                        System.out.println("Kode Buku   : "+buku_c.getDetail(cekBuku).getKodeBuku());
+                        System.out.println("Judul Buku  : "+buku_c.getDetail(cekBuku).getJudulBuku());
+                        System.out.println("Stok        : "+buku_c.getDetail(cekBuku).getStok());
+                        System.out.println("-------------------------------------------------------------------------------");              
+                        System.out.println("1. Lanjutkan Transaksi ");
+                        System.out.println("2. Cari Buku Lagi ");
+                        System.out.print("pilih : ");
+                        ulang = input.next();
+                        ulang = (ulang.equals("2")) ? "y" : "t";
                     }
                 }while (ulang.equals("y") || ulang.equals("Y"));
+                
+                if(cekBuku != -1){
+                    // Langkah Selanjutnya    
+                    System.out.println("");
+                    System.out.println("Detail Peminjaman");
+                    System.out.print("Jumlah : ");
+                    int jumlah = input.nextInt(); // Jumlah yang dipinjam
+
+                    System.out.print("Tanggal Pinjam (dd/mm/yy) : ");
+                    Date tglPinjam = new Date(input.next()); // input tanggal pinjam
+
+                    System.out.print("Tanggal Kembali (dd/mm/yy) : ");
+                    Date tglKembali = new Date(input.next()); // input tanggal kembali
+
+                    // mencetak bukti peminjaman buku
+                    System.out.println("");
+                    System.out.println("Cetak Peminjaman");
+                    System.out.println("-------------------------------------------------------------------------------");
+                    System.out.println("ID Anggota   : "+anggota_c.getDetail(cekAnggota).getNoId()+"    |    Tanggal Pinjam  : "+tglPinjam);
+                    System.out.println("Nama Anggota : "+anggota_c.getDetail(cekAnggota).getNama()+"    |    Tanggal Kembali : "+tglKembali);
+                    System.out.println("-------------------------------------------------------------------------------");
+                    System.out.println("No  |  Nama buku  |  Jumlah");
+                    System.out.println("-------------------------------------------------------------------------------");
+                    System.out.println("1. "+" | "+buku_c.getDetail(cekBuku).getJudulBuku()+"  |  "+jumlah);
+                    System.out.println("-------------------------------------------------------------------------------");
+
+                    System.out.print("Apakah Anda ingin menyimpan peminjaman ? (y/t) ");
+                    String konfirmasi = input.next();
+
+                    if(konfirmasi.equals("y") || konfirmasi.equals("Y")){
+                        // Proses Simpan Peminjaman
+                        pinjam_c.insertPeminjaman(buku_c.getDetail(cekBuku), anggota_c.getDetail(cekAnggota), jumlah, tglPinjam, tglKembali);
+                        System.out.println("Peminjaman berhasil disimpan !\n");
+                    }else{
+                        System.out.println("Peminjaman berhasil dibatalkan !\n");
+                    }
+                    // End Peminjaman  
+                }
+                          
             }
-            // Selanjutnya tinggal input tgl dan jumlah
-            // lalu cetak peminjaman (view)
-            // Simpan
         }
     }
     
     public void viewListPeminjaman(){
+        // mencetak daftar peminjaman buku
+        System.out.println ("\r");
+        System.out.println("Daftar Peminjaman Buku");
+        System.out.println("------------------------------------------------------------------------------");
+        System.out.println("No. |  Nama Anggota  |  Buku  |  Tgl Pinjam  |  Tgl Kembali  |  Status");
+        System.out.println("------------------------------------------------------------------------------");
         
+        if(pinjam_c.viewPeminjaman().size()>0){
+            for (int i=0;i<pinjam_c.viewPeminjaman().size();i++) {
+                String namaAnggota = pinjam_c.viewPeminjaman().get(i).getAnggota().getNoId()+ " - " +pinjam_c.viewPeminjaman().get(i).getAnggota().getNama(); 
+                String buku = pinjam_c.viewPeminjaman().get(i).getBuku().getKodeBuku()+ " - " +pinjam_c.viewPeminjaman().get(i).getBuku().getJudulBuku(); 
+                
+                System.out.println(
+                        (i+1)+".  |  "
+                        + namaAnggota +"  |  "
+                        + buku +"  |  "
+                        + pinjam_c.viewPeminjaman().get(i).getTglPinjam()+"  |  "
+                        + pinjam_c.viewPeminjaman().get(i).getTglKembali()+"  |  "
+                        + statusPeminjaman[Integer.parseInt(pinjam_c.viewPeminjaman().get(i).getStatus())]);
+                System.out.println("------------------------------------------------------------------------------");
+            }
+        }else{
+            System.out.println("Daftar Peminjaman Kosong !\n");
+        }
+    }
+    
+    public void pengembalian(){
+        System.out.print("Masukan ID Anggota : ");
+        String noId = input.next();
+        int cekAnggota = anggota_c.cari(noId);
+        
+        if(cekAnggota==-1){
+            System.out.println("Ooops, Anggota tidak ditemukan ! ");
+        }else{
+            System.out.println("ID Anggota : "+anggota_c.getDetail(cekAnggota).getNoId());
+            System.out.println("Nama Anggota : "+anggota_c.getDetail(cekAnggota).getNama());
+            System.out.println("-------------------------------------------------------------------------------");                
+            // Cek Tanggungan Peminjaman            
+            int cekPeminjaman = pinjam_c.cekPeminjamanAnggota(noId, "0");
+            if(cekPeminjaman == -1){
+                System.out.println("Anggota tidak mempunyai tanggungan peminjaman ! \n");
+            }else{
+                // mencetak bukti peminjaman buku
+                String buku = pinjam_c.getDetail(cekPeminjaman).getBuku().getKodeBuku()+ " - " +pinjam_c.getDetail(cekPeminjaman).getBuku().getJudulBuku(); 
+                System.out.println("Cetak Peminjaman");
+                System.out.println("-------------------------------------------------------------------------------");
+                System.out.println("ID Anggota   : "+pinjam_c.getDetail(cekPeminjaman).getAnggota().getNoId()+"    |    Tanggal Pinjam  : "+pinjam_c.getDetail(cekPeminjaman).getTglPinjam());
+                System.out.println("Nama Anggota : "+pinjam_c.getDetail(cekPeminjaman).getAnggota().getNama()+"    |    Tanggal Kembali : "+pinjam_c.getDetail(cekPeminjaman).getTglKembali());
+                System.out.println("-------------------------------------------------------------------------------");
+                System.out.println("No  |  Nama buku  |  Jumlah  |  Status");
+               
+                System.out.println("-------------------------------------------------------------------------------");
+                System.out.println("1. "+" | "+buku+"  |  "+pinjam_c.getDetail(cekPeminjaman).getJumlah()+"  |  "+statusPeminjaman[Integer.parseInt(pinjam_c.getDetail(cekPeminjaman).getStatus())]);
+                System.out.println("-------------------------------------------------------------------------------\n");
+                
+                // Update status
+                updateStatusPeminjaman(cekPeminjaman, pinjam_c.getDetail(cekPeminjaman));
+            }
+        }
+    }
+    
+    public void updateStatusPeminjaman(int index, Abdul07095_PeminjamanEntity pinjam){
+        try {
+            String konfirmasi;
+            System.out.print("Lanjutkan transaksi pengembalian (y/t) ");
+            konfirmasi = input.next();
+            if(konfirmasi.equals("y") || konfirmasi.equals("Y")){
+                pinjam_c.updateStatus(index, pinjam);
+                System.out.println("Pengembalian buku sukses ! \n");
+            }else{
+                System.out.println("Pengembalian buku dibatalkan ! \n");
+            }
+        } catch (Exception e) {
+            System.out.println("Pengembalian buku dibatalkan ! \n");
+        }
     }
 }
