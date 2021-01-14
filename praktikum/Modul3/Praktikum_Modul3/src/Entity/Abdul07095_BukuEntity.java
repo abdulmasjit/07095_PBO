@@ -1,10 +1,8 @@
 package Entity;
 public class Abdul07095_BukuEntity {
-     // Attribut    
     private String kodeBuku, judulBuku, pengarang, tahunTerbit;
     private int stok;
     
-    // Constructor
     public Abdul07095_BukuEntity(String kodeBuku, String judulBuku, String pengarang, String tahunTerbit, int stok){
         this.kodeBuku = kodeBuku;
         this.judulBuku = judulBuku;
@@ -13,9 +11,7 @@ public class Abdul07095_BukuEntity {
         this.stok = stok;
     }
     
-    public Abdul07095_BukuEntity(){
-        
-    }
+    public Abdul07095_BukuEntity(){}
 
     public String getKodeBuku() {
         return kodeBuku;

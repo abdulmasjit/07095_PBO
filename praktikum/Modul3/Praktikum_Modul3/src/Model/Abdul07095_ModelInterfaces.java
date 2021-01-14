@@ -4,3 +4,4 @@ public interface Abdul07095_ModelInterfaces {
     public void update(int index, Object x);
     public void delete(int index);
 }
+

@@ -1,10 +1,6 @@
 package Entity;
 import java.util.Date;
-
 public class Abdul07095_PeminjamanEntity {
-    // Status = "0" -> Belum dikembalikan, 
-    //          "1" -> Sudah Dikembalikan
-    
     private String noPeminjaman, status;
     private Abdul07095_BukuEntity buku;
     private Abdul07095_AnggotaEntity anggota;

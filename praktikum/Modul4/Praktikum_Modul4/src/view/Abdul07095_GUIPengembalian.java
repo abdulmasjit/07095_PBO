@@ -1,0 +1,251 @@
+package view;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+import Controller.Abdul07095_AnggotaController;
+import Controller.Abdul07095_BukuController;
+import Controller.Abdul07095_PeminjamanController;
+import Entity.Abdul07095_JenisAnggotaEntity;
+import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
+import java.text.SimpleDateFormat;  
+
+/**
+ *
+ * @author Masjit Subekti
+ */
+public class Abdul07095_GUIPengembalian {
+    private static Abdul07095_JenisAnggotaEntity ja = new Abdul07095_JenisAnggotaEntity();
+    private static String [] statusPeminjaman = {"Belum Dikembalikan", "Dikembalikan"};
+    
+    JFrame pengembalianFrame = new JFrame();
+    JTable tabelPinjam = new JTable();
+    JScrollPane scrollable = new JScrollPane(tabelPinjam);
+    JButton btnKembali, btnReset, btnUpdate, btnCariAnggota;
+    JLabel admin, noidLabel, kodeBukuLabel, noAnggotaLabel, namaAnggotaLabel, jenisAnggotaLabel;
+    JTextField txtNoid;
+    JPanel panelAnggota;
+    DefaultTableModel dtmPeminjaman;
+    int indexAnggota = -1;
+    int indexPeminjaman = -1;
+    
+    public Abdul07095_GUIPengembalian(){
+        Objctrl.pinjam_c.viewPeminjaman();
+        initComponents();
+        System.out.println(Objctrl.pinjam_c.cekPeminjamanAnggota("AG001", "0"));
+        viewListPeminjaman();
+        setKolom();
+    }
+    
+    private void initComponents(){
+        pengembalianFrame.setSize(800, 570);
+        pengembalianFrame.setLayout(null);
+        pengembalianFrame.setTitle("Form Peminjaman");
+         
+        // Cari Anggota
+        noidLabel = new JLabel("No Anggota");
+        noidLabel.setBounds(30, 30, 100, 30);
+        pengembalianFrame.add(noidLabel);
+
+        txtNoid = new JTextField();
+        txtNoid.setBounds(130, 35, 200, 25);
+        pengembalianFrame.add(txtNoid);
+    
+        btnCariAnggota = new JButton("Cari");
+        btnCariAnggota.setBounds(350, 35, 70, 25);
+        pengembalianFrame.add(btnCariAnggota);
+        
+        // Detail Anggota
+        JLabel labelKetNoid = new JLabel("No Anggota        : ");
+        labelKetNoid.setBounds(40, 70, 100, 50);
+        pengembalianFrame.add(labelKetNoid);
+        
+        noAnggotaLabel = new JLabel("");
+        noAnggotaLabel.setBounds(145, 70, 500, 50);
+        pengembalianFrame.add(noAnggotaLabel);
+        
+        JLabel labelKetNama = new JLabel("Nama Anggota  : ");
+        labelKetNama.setBounds(40, 95, 100, 50);
+        pengembalianFrame.add(labelKetNama);
+        
+        namaAnggotaLabel = new JLabel("");
+        namaAnggotaLabel.setBounds(145, 95, 500, 50);
+        pengembalianFrame.add(namaAnggotaLabel);
+        
+        JLabel labelKetJenis = new JLabel("Jenis Anggota   : ");
+        labelKetJenis.setBounds(40, 120, 100, 50);
+        pengembalianFrame.add(labelKetJenis);
+        
+        jenisAnggotaLabel = new JLabel("");
+        jenisAnggotaLabel.setBounds(145, 120, 500, 50);
+        pengembalianFrame.add(jenisAnggotaLabel);
+        
+        panelAnggota = new JPanel();
+        panelAnggota.setBackground(Color.WHITE);
+        panelAnggota.setBounds(30, 78, 725, 90);
+        pengembalianFrame.add(panelAnggota);
+       
+        // Cari Buku
+        kodeBukuLabel = new JLabel("Daftar Peminjaman");
+        kodeBukuLabel.setBounds(30, 190, 200, 30);
+        pengembalianFrame.add(kodeBukuLabel);
+        
+        // Table Peminjaman
+        scrollable.setBounds(30, 240, 725, 200);
+        // tabelPinjam.setModel(buku_c.loadDataBuku());
+        pengembalianFrame.add(scrollable);
+        
+        // Action
+        btnReset = new JButton("Reset");
+        btnReset.setBounds(30, 460, 100, 30);
+        pengembalianFrame.add(btnReset);
+
+        btnUpdate = new JButton("Simpan");
+        btnUpdate.setBounds(140, 460, 100, 30);
+        pengembalianFrame.add(btnUpdate);
+        
+        btnKembali = new JButton("Keluar");
+        btnKembali.setBounds(250, 460, 100, 30);
+        pengembalianFrame.add(btnKembali);
+        
+        pengembalianFrame.setLocationRelativeTo(null);
+        pengembalianFrame.setVisible(true);
+        pengembalianFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        btnCariAnggota.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                cariAnggota();
+            }
+        });
+       
+        btnUpdate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                updateStatusPeminjaman();
+            }
+        });
+        
+        btnReset.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                reset();
+            }
+        });
+        
+        btnKembali.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+//                pengembalianFrame.dispose();
+                Abdul07095_GUIMenu menu = new Abdul07095_GUIMenu();
+            }
+        });
+    }
+    
+    private void setKolom() {
+        Object[] kolom = {"Kode Buku","Judul","Jumlah","Tanggal Pinjam","Tanggal Kembali","Status"};
+        dtmPeminjaman = new DefaultTableModel(null, kolom);
+        tabelPinjam.setModel(dtmPeminjaman);
+    }
+    
+    public void reset(){
+        txtNoid.setText(null);
+        noAnggotaLabel.setText(null);
+        namaAnggotaLabel.setText(null);
+        jenisAnggotaLabel.setText(null);
+        indexPeminjaman = -1;
+        indexAnggota = -1;
+        setKolom();
+    }
+    
+    public void cariAnggota(){
+        try{
+            String noId = txtNoid.getText();
+            indexAnggota = Objctrl.anggota_c.cari(noId);
+            // Cek Anggota
+            if(indexAnggota==-1){
+                JOptionPane.showMessageDialog(null,"Ooops, Anggota tidak ditemukan ! ", "information", JOptionPane.INFORMATION_MESSAGE);
+                txtNoid.setText(null);
+                noAnggotaLabel.setText("");
+                namaAnggotaLabel.setText("");
+                jenisAnggotaLabel.setText("");
+            }else{
+                // Cek Tanggungan Peminjaman            
+                indexPeminjaman = Objctrl.pinjam_c.cekPeminjamanAnggota(noId, "0");
+                if(indexPeminjaman == -1){
+                    JOptionPane.showMessageDialog(null,"Ooops, Anggota tidak mempunyai tanggungan peminjaman ! ", "information", JOptionPane.INFORMATION_MESSAGE);
+                    txtNoid.setText(null);
+                    indexAnggota = -1;
+                }else{
+                    noAnggotaLabel.setText(Objctrl.anggota_c.getDetail(indexAnggota).getNoId());
+                    namaAnggotaLabel.setText(Objctrl.anggota_c.getDetail(indexAnggota).getNama());
+                    jenisAnggotaLabel.setText(ja.jenisAnggota[Objctrl.anggota_c.getDetail(indexAnggota).getJenisAnggota()]);
+                    
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");      
+                    Object[] data = {             
+                        Objctrl.pinjam_c.getDetail(indexPeminjaman).getBuku().getKodeBuku(), 
+                        Objctrl.pinjam_c.getDetail(indexPeminjaman).getBuku().getJudulBuku(), 
+                        1,
+                        formatter.format(Objctrl.pinjam_c.getDetail(indexPeminjaman).getTglPinjam()), 
+                        formatter.format(Objctrl.pinjam_c.getDetail(indexPeminjaman).getTglPinjam()),
+                        statusPeminjaman[Integer.parseInt(Objctrl.pinjam_c.getDetail(indexPeminjaman).getStatus())]
+                    };
+                    dtmPeminjaman.addRow(data);
+                }
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Internal server error", "information", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+     
+    public void updateStatusPeminjaman(){
+        try {
+            if(indexAnggota==-1){
+                JOptionPane.showMessageDialog(null,"Ooops, Harap pilih anggota ! ", "information", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                Object[] options = { "Simpan", "Batal" };
+                int jawab = JOptionPane.showOptionDialog(null, 
+                "Simpan pengembalian !",
+                "Pengembalian", 
+                JOptionPane.YES_NO_OPTION, 
+                JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+                if(jawab == JOptionPane.YES_OPTION){ 
+                    Objctrl.pinjam_c.updateStatus(indexAnggota, Objctrl.pinjam_c.getDetail(indexPeminjaman));
+                    JOptionPane.showMessageDialog(null, "Pengembalian buku sukses");
+                    reset();
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    public void viewListPeminjaman(){
+        // mencetak daftar peminjaman buku
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); 
+        System.out.println ("\r");
+        System.out.println("Daftar Peminjaman Buku");
+        System.out.println("------------------------------------------------------------------------------");
+        System.out.println("No. |  Nama Anggota  |  Buku  |  Tgl Pinjam  |  Tgl Kembali  |  Status");
+        System.out.println("------------------------------------------------------------------------------");
+        
+        if(Objctrl.pinjam_c.viewPeminjaman().size()>0){
+            for (int i=0;i<Objctrl.pinjam_c.viewPeminjaman().size();i++) {
+                String namaAnggota = Objctrl.pinjam_c.viewPeminjaman().get(i).getAnggota().getNoId()+ " - " +Objctrl.pinjam_c.viewPeminjaman().get(i).getAnggota().getNama(); 
+                String buku = Objctrl.pinjam_c.viewPeminjaman().get(i).getBuku().getKodeBuku()+ " - " +Objctrl.pinjam_c.viewPeminjaman().get(i).getBuku().getJudulBuku(); 
+                
+                System.out.println(
+                        (i+1)+".  |  "
+                        + namaAnggota +"  |  "
+                        + buku +"  |  "
+                        + formatter.format(Objctrl.pinjam_c.viewPeminjaman().get(i).getTglPinjam())+"  |  "
+                        + formatter.format(Objctrl.pinjam_c.viewPeminjaman().get(i).getTglKembali())+"  |  "
+                        + statusPeminjaman[Integer.parseInt(Objctrl.pinjam_c.viewPeminjaman().get(i).getStatus())]);
+                System.out.println("------------------------------------------------------------------------------");
+            }
+        }else{
+            System.out.println("Daftar Peminjaman Kosong !\n");
+        }
+    }
+}

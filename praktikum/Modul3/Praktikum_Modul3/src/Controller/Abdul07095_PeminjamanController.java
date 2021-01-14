@@ -1,5 +1,4 @@
 package Controller;
-
 import Entity.Abdul07095_AnggotaEntity;
 import Entity.Abdul07095_BukuEntity;
 import Entity.Abdul07095_PeminjamanEntity;
@@ -9,7 +8,6 @@ import java.util.Date;
 
 public class Abdul07095_PeminjamanController {
     Abdul07095_PeminjamanModel pinjam_m;
-
     public Abdul07095_PeminjamanController() {
         pinjam_m = new Abdul07095_PeminjamanModel();
     }

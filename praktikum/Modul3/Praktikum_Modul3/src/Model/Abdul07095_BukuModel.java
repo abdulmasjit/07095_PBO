@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Abdul07095_BukuModel implements Abdul07095_ModelInterfaces{
     private ArrayList<Abdul07095_BukuEntity> listBuku;
-    
     public Abdul07095_BukuModel(){
         listBuku = new ArrayList<>();
     }

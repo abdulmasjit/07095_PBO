@@ -14,16 +14,6 @@ public class Abdul07095_AnggotaController {
         return anggota_m.getListAnggota();
     }
     
-    public void dataAnggotaSementara(){  
-        String noId [] = {"AG001", "AG002", "AG003"};
-        String nama [] = {"Risky Ade", "Dian Indah", "Muhammad Alkautsar"};
-        String noTelp [] = {"085334545054", "085334545051", "085334545055"};    
-        int jenisAnggota [] = {1, 1, 0};    
-        for (int i = 0; i < noId.length; i++) {
-            anggota_m.insert(new Abdul07095_AnggotaEntity(noId[i], nama[i], noTelp[i], jenisAnggota[i]));
-        }
-    }
-    
     public void insertAnggota(String noId, String nama, String noTelp, int jenisAnggota){
         Abdul07095_AnggotaEntity data = new Abdul07095_AnggotaEntity();
         data.setNoId(noId);
@@ -51,5 +41,15 @@ public class Abdul07095_AnggotaController {
             }
         }
         return result;
+    }
+    
+    public void dataAnggotaSementara(){  
+        String noId [] = {"AG001", "AG002", "AG003"};
+        String nama [] = {"Risky Ade", "Dian Indah", "Muhammad Alkautsar"};
+        String noTelp [] = {"085334545054", "085334545051", "085334545055"};    
+        int jenisAnggota [] = {1, 1, 0};    
+        for (int i = 0; i < noId.length; i++) {
+            anggota_m.insert(new Abdul07095_AnggotaEntity(noId[i], nama[i], noTelp[i], jenisAnggota[i]));
+        }
     }
 }

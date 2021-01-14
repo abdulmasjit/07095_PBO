@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 public class Abdul07095_AnggotaModel implements Abdul07095_ModelInterfaces{
     private ArrayList<Abdul07095_AnggotaEntity> listAnggota;
-    
     public Abdul07095_AnggotaModel(){
         listAnggota = new ArrayList<>();
     }
