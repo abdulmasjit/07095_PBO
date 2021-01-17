@@ -2,6 +2,8 @@ package view;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.*;
 
 /**
@@ -107,6 +109,14 @@ public class Abdul07095_GUILogin {
                 login();
             }
         });
+        
+        txtPassword.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                   login();
+                }
+            } 
+        });
     }
     
     private void login(){
@@ -122,8 +132,8 @@ public class Abdul07095_GUILogin {
                     loginFrame.dispose();
                     Abdul07095_GUIMenu menu = new Abdul07095_GUIMenu();
                 }else{
-                    txtUsername.setText(null);
-                    txtPassword.setText(null);
+                    // txtUsername.setText(null);
+                    // txtPassword.setText(null);
                     JOptionPane.showMessageDialog(null, "Oopss, Login Gagal !");
                 }
             }

@@ -1,14 +1,7 @@
 package view;
-import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JToolBar;
+import javax.swing.*;
 
 /**
  *
@@ -16,12 +9,17 @@ import javax.swing.JToolBar;
  */
 public class Abdul07095_GUIMenu {
     JFrame menuFrame = new JFrame();
-    JButton menuBuku, menuAnggota, menuDataPeminjaman, menuPeminjaman, menuPengembalian, logout;
     
     public Abdul07095_GUIMenu(){
+        initComponents();
+    }
+    
+    private void initComponents(){
         menuFrame.setSize(700, 500);
         menuFrame.setLayout(null);
         menuFrame.setTitle("Menu");
+        
+        JButton menuBuku, menuAnggota, menuDataPeminjaman, menuPeminjaman, menuPengembalian, logout;
         
         menuBuku = new JButton("Buku");
         menuBuku.setBounds(100, 50, 150, 70);

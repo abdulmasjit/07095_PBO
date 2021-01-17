@@ -12,14 +12,19 @@ import javax.swing.JTable;
  */
 public class Abdul07095_GUIDataPeminjaman {
     JFrame dtpFrame = new JFrame();
-    JButton btnKembali;
-    JTable tabelPinjam = new JTable();
-    JScrollPane scrollable = new JScrollPane(tabelPinjam);
     
     public Abdul07095_GUIDataPeminjaman(){
+        initComponens();
+    }
+    
+    private void initComponens(){
         dtpFrame.setSize(800, 350);
         dtpFrame.setLayout(null);
         dtpFrame.setTitle("Data Peminjaman");
+        
+        JTable tabelPinjam = new JTable();
+        JScrollPane scrollable = new JScrollPane(tabelPinjam);
+        JButton btnKembali;
         
         btnKembali = new JButton("Kembali");
         btnKembali.setBounds(30, 30, 100, 30);

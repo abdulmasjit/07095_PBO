@@ -14,17 +14,26 @@ public class Abdul07095_GUIAnggota {
     Abdul07095_JenisAnggotaEntity ja = new Abdul07095_JenisAnggotaEntity();
     JFrame anggotaFrame = new JFrame();
     JTable tabelAnggota = new JTable();
-    JScrollPane scrollable = new JScrollPane(tabelAnggota);
     JButton btnKembali, btnReset, btnSimpan, btnEdit, btnHapus;
-    JLabel admin, noidLabel, namaLabel, notelpLabel, jenisLabel;
     JTextField txtNoid, txtNama, txtNotelp;
     JComboBox cmbJenis;
-    int selectedIndex = -1;
+    private int selectedIndex = -1;
+    
     public Abdul07095_GUIAnggota(){
+        initComponents();
+    }
+    
+    private void initComponents(){
         anggotaFrame.setSize(645, 540);
         anggotaFrame.setLayout(null);
         anggotaFrame.setTitle("Form Anggota");
-            
+        
+        JScrollPane scrollable = new JScrollPane(tabelAnggota);
+        JLabel noidLabel; 
+        JLabel namaLabel;
+        JLabel notelpLabel;
+        JLabel jenisLabel;    
+        
         noidLabel = new JLabel("No ID");
         noidLabel.setBounds(30, 30, 100, 30);
         anggotaFrame.add(noidLabel);
@@ -170,7 +179,6 @@ public class Abdul07095_GUIAnggota {
                 btnHapus.setEnabled(true);
             }
         });
-        
     }
     
     public void reset(){

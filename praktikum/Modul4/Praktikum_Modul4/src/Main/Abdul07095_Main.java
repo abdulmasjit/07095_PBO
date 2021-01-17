@@ -115,12 +115,12 @@ public class Abdul07095_Main {
     
     // =================================== Anggota =====================================
     public void viewAnggota(){
-        if(anggota_c.viewAnggota().size()>0){
-            for(int i = 0; i < anggota_c.viewAnggota().size(); i++){
-                System.out.println("No ID : "+anggota_c.viewAnggota().get(i).getNoId()
-                                   +"\nNama : "+anggota_c.viewAnggota().get(i).getNama()
-                                   +"\nNo.Telp : "+anggota_c.viewAnggota().get(i).getNoTelp()
-                                   +"\nJenis Anggota : "+ja.jenisAnggota[anggota_c.viewAnggota().get(i).getJenisAnggota()]
+        if(anggota_c.listAnggota().size()>0){
+            for(int i = 0; i < anggota_c.listAnggota().size(); i++){
+                System.out.println("No ID : "+anggota_c.listAnggota().get(i).getNoId()
+                                   +"\nNama : "+anggota_c.listAnggota().get(i).getNama()
+                                   +"\nNo.Telp : "+anggota_c.listAnggota().get(i).getNoTelp()
+                                   +"\nJenis Anggota : "+ja.jenisAnggota[anggota_c.listAnggota().get(i).getJenisAnggota()]
                 );
                 System.out.println("------------------------------------------------------------");
             }
@@ -181,13 +181,13 @@ public class Abdul07095_Main {
     }
     
     public void viewBuku(){
-        if(buku_c.viewBuku().size()>0){
-            for(int i = 0; i < buku_c.viewBuku().size(); i++){
-                System.out.println("Kode Buku : "+buku_c.viewBuku().get(i).getKodeBuku()
-                                   +"\nJuduk : "+buku_c.viewBuku().get(i).getJudulBuku()
-                                   +"\nPengarang : "+buku_c.viewBuku().get(i).getPengarang()
-                                   +"\nTahun Terbit : "+buku_c.viewBuku().get(i).getTahunTerbit()
-                                   +"\nStok : "+buku_c.viewBuku().get(i).getStok()
+        if(buku_c.listBuku().size()>0){
+            for(int i = 0; i < buku_c.listBuku().size(); i++){
+                System.out.println("Kode Buku : "+buku_c.listBuku().get(i).getKodeBuku()
+                                   +"\nJuduk : "+buku_c.listBuku().get(i).getJudulBuku()
+                                   +"\nPengarang : "+buku_c.listBuku().get(i).getPengarang()
+                                   +"\nTahun Terbit : "+buku_c.listBuku().get(i).getTahunTerbit()
+                                   +"\nStok : "+buku_c.listBuku().get(i).getStok()
                 );
                 System.out.println("------------------------------------------------------------");
             }
@@ -284,18 +284,18 @@ public class Abdul07095_Main {
         System.out.println("No. |  Nama Anggota  |  Buku  |  Tgl Pinjam  |  Tgl Kembali  |  Status");
         System.out.println("------------------------------------------------------------------------------");
         
-        if(pinjam_c.viewPeminjaman().size()>0){
-            for (int i=0;i<pinjam_c.viewPeminjaman().size();i++) {
-                String namaAnggota = pinjam_c.viewPeminjaman().get(i).getAnggota().getNoId()+ " - " +pinjam_c.viewPeminjaman().get(i).getAnggota().getNama(); 
-                String buku = pinjam_c.viewPeminjaman().get(i).getBuku().getKodeBuku()+ " - " +pinjam_c.viewPeminjaman().get(i).getBuku().getJudulBuku(); 
+        if(pinjam_c.listPeminjaman().size()>0){
+            for (int i=0;i<pinjam_c.listPeminjaman().size();i++) {
+                String namaAnggota = pinjam_c.listPeminjaman().get(i).getAnggota().getNoId()+ " - " +pinjam_c.listPeminjaman().get(i).getAnggota().getNama(); 
+                String buku = pinjam_c.listPeminjaman().get(i).getBuku().getKodeBuku()+ " - " +pinjam_c.listPeminjaman().get(i).getBuku().getJudulBuku(); 
                 
                 System.out.println(
                         (i+1)+".  |  "
                         + namaAnggota +"  |  "
                         + buku +"  |  "
-                        + pinjam_c.viewPeminjaman().get(i).getTglPinjam()+"  |  "
-                        + pinjam_c.viewPeminjaman().get(i).getTglKembali()+"  |  "
-                        + statusPeminjaman[Integer.parseInt(pinjam_c.viewPeminjaman().get(i).getStatus())]);
+                        + pinjam_c.listPeminjaman().get(i).getTglPinjam()+"  |  "
+                        + pinjam_c.listPeminjaman().get(i).getTglKembali()+"  |  "
+                        + statusPeminjaman[Integer.parseInt(pinjam_c.listPeminjaman().get(i).getStatus())]);
                 System.out.println("------------------------------------------------------------------------------");
             }
         }else{

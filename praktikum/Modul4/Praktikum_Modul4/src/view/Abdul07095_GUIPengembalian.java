@@ -2,9 +2,6 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import Controller.Abdul07095_AnggotaController;
-import Controller.Abdul07095_BukuController;
-import Controller.Abdul07095_PeminjamanController;
 import Entity.Abdul07095_JenisAnggotaEntity;
 import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
@@ -15,25 +12,17 @@ import java.text.SimpleDateFormat;
  * @author Masjit Subekti
  */
 public class Abdul07095_GUIPengembalian {
-    private static Abdul07095_JenisAnggotaEntity ja = new Abdul07095_JenisAnggotaEntity();
-    private static String [] statusPeminjaman = {"Belum Dikembalikan", "Dikembalikan"};
-    
     JFrame pengembalianFrame = new JFrame();
     JTable tabelPinjam = new JTable();
-    JScrollPane scrollable = new JScrollPane(tabelPinjam);
     JButton btnKembali, btnReset, btnUpdate, btnCariAnggota;
-    JLabel admin, noidLabel, kodeBukuLabel, noAnggotaLabel, namaAnggotaLabel, jenisAnggotaLabel;
+    JLabel noAnggotaLabel, namaAnggotaLabel, jenisAnggotaLabel;
     JTextField txtNoid;
-    JPanel panelAnggota;
     DefaultTableModel dtmPeminjaman;
-    int indexAnggota = -1;
-    int indexPeminjaman = -1;
+    private int indexAnggota = -1;
+    private int indexPeminjaman = -1;
     
     public Abdul07095_GUIPengembalian(){
-        Objctrl.pinjam_c.viewPeminjaman();
         initComponents();
-        System.out.println(Objctrl.pinjam_c.cekPeminjamanAnggota("AG001", "0"));
-        viewListPeminjaman();
         setKolom();
     }
     
@@ -41,7 +30,11 @@ public class Abdul07095_GUIPengembalian {
         pengembalianFrame.setSize(800, 570);
         pengembalianFrame.setLayout(null);
         pengembalianFrame.setTitle("Form Pengembalian");
-         
+    
+        JScrollPane scrollable = new JScrollPane(tabelPinjam);
+        JPanel panelAnggota;
+        JLabel noidLabel, kodeBukuLabel;
+        
         // Cari Anggota
         noidLabel = new JLabel("No Anggota");
         noidLabel.setBounds(30, 30, 100, 30);
@@ -179,8 +172,9 @@ public class Abdul07095_GUIPengembalian {
                 }else{
                     noAnggotaLabel.setText(Objctrl.anggota_c.getDetail(indexAnggota).getNoId());
                     namaAnggotaLabel.setText(Objctrl.anggota_c.getDetail(indexAnggota).getNama());
-                    jenisAnggotaLabel.setText(ja.jenisAnggota[Objctrl.anggota_c.getDetail(indexAnggota).getJenisAnggota()]);
+                    jenisAnggotaLabel.setText(Objctrl.ja.jenisAnggota[Objctrl.anggota_c.getDetail(indexAnggota).getJenisAnggota()]);
                     
+                    setKolom();
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");      
                     Object[] data = {             
                         Objctrl.pinjam_c.getDetail(indexPeminjaman).getBuku().getKodeBuku(), 
@@ -188,7 +182,7 @@ public class Abdul07095_GUIPengembalian {
                         1,
                         formatter.format(Objctrl.pinjam_c.getDetail(indexPeminjaman).getTglPinjam()), 
                         formatter.format(Objctrl.pinjam_c.getDetail(indexPeminjaman).getTglPinjam()),
-                        statusPeminjaman[Integer.parseInt(Objctrl.pinjam_c.getDetail(indexPeminjaman).getStatus())]
+                        Objctrl.statusPeminjaman[Integer.parseInt(Objctrl.pinjam_c.getDetail(indexPeminjaman).getStatus())]
                     };
                     dtmPeminjaman.addRow(data);
                 }
@@ -214,6 +208,7 @@ public class Abdul07095_GUIPengembalian {
                     Objctrl.pinjam_c.updateStatus(indexAnggota, Objctrl.pinjam_c.getDetail(indexPeminjaman));
                     JOptionPane.showMessageDialog(null, "Pengembalian buku sukses");
                     reset();
+                    viewListPeminjaman();
                 }
             }
         } catch (Exception e) {
@@ -230,18 +225,18 @@ public class Abdul07095_GUIPengembalian {
         System.out.println("No. |  Nama Anggota  |  Buku  |  Tgl Pinjam  |  Tgl Kembali  |  Status");
         System.out.println("------------------------------------------------------------------------------");
         
-        if(Objctrl.pinjam_c.viewPeminjaman().size()>0){
-            for (int i=0;i<Objctrl.pinjam_c.viewPeminjaman().size();i++) {
-                String namaAnggota = Objctrl.pinjam_c.viewPeminjaman().get(i).getAnggota().getNoId()+ " - " +Objctrl.pinjam_c.viewPeminjaman().get(i).getAnggota().getNama(); 
-                String buku = Objctrl.pinjam_c.viewPeminjaman().get(i).getBuku().getKodeBuku()+ " - " +Objctrl.pinjam_c.viewPeminjaman().get(i).getBuku().getJudulBuku(); 
+        if(Objctrl.pinjam_c.listPeminjaman().size()>0){
+            for (int i=0;i<Objctrl.pinjam_c.listPeminjaman().size();i++) {
+                String namaAnggota = Objctrl.pinjam_c.listPeminjaman().get(i).getAnggota().getNoId()+ " - " +Objctrl.pinjam_c.listPeminjaman().get(i).getAnggota().getNama(); 
+                String buku = Objctrl.pinjam_c.listPeminjaman().get(i).getBuku().getKodeBuku()+ " - " +Objctrl.pinjam_c.listPeminjaman().get(i).getBuku().getJudulBuku(); 
                 
                 System.out.println(
                         (i+1)+".  |  "
                         + namaAnggota +"  |  "
                         + buku +"  |  "
-                        + formatter.format(Objctrl.pinjam_c.viewPeminjaman().get(i).getTglPinjam())+"  |  "
-                        + formatter.format(Objctrl.pinjam_c.viewPeminjaman().get(i).getTglKembali())+"  |  "
-                        + statusPeminjaman[Integer.parseInt(Objctrl.pinjam_c.viewPeminjaman().get(i).getStatus())]);
+                        + formatter.format(Objctrl.pinjam_c.listPeminjaman().get(i).getTglPinjam())+"  |  "
+                        + formatter.format(Objctrl.pinjam_c.listPeminjaman().get(i).getTglKembali())+"  |  "
+                        + Objctrl.statusPeminjaman[Integer.parseInt(Objctrl.pinjam_c.listPeminjaman().get(i).getStatus())]);
                 System.out.println("------------------------------------------------------------------------------");
             }
         }else{

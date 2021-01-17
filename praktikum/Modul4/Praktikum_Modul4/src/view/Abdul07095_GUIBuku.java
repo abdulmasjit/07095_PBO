@@ -15,16 +15,27 @@ import java.awt.event.MouseEvent;
 public class Abdul07095_GUIBuku {
     JFrame bukuFrame = new JFrame();
     JTable tabelbuku = new JTable();
-    JScrollPane scrollaslab = new JScrollPane(tabelbuku);
     JButton btnKembali, btnReset, btnSimpan, btnEdit, btnHapus;
-    JLabel admin, kodebukulabel, judullabel, pengaranglabel, tahunterbitlabel, stoklabel;
     JTextField kodebukutext, judultext, pengarangtext, tahunterbitext, stoktext;
-    int selectedIndex = -1;
+    private int selectedIndex = -1;
+    
     public Abdul07095_GUIBuku(){
+        initComponents();
+    }
+    
+    private void initComponents(){
         bukuFrame.setSize(645, 580);
         bukuFrame.setLayout(null);
         bukuFrame.setTitle("Form Buku");
-            
+        
+        JLabel kodebukulabel;
+        JLabel judullabel;
+        JLabel pengaranglabel;
+        JLabel tahunterbitlabel;
+        JLabel stoklabel;
+    
+        JScrollPane scrollaslab = new JScrollPane(tabelbuku);
+        
         kodebukulabel = new JLabel("Kode Buku");
         kodebukulabel.setBounds(30, 30, 100, 30);
         bukuFrame.add(kodebukulabel);
@@ -181,10 +192,9 @@ public class Abdul07095_GUIBuku {
                 btnHapus.setEnabled(true);
             }
         });
-        
     }
     
-    public void reset(){
+    private void reset(){
         kodebukutext.setText(null);
         judultext.setText(null);
         pengarangtext.setText(null);

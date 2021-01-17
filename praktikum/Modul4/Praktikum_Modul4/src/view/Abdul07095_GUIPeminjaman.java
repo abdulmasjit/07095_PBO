@@ -19,26 +19,21 @@ import java.util.Date;
  * @author Masjit Subekti
  */
 public class Abdul07095_GUIPeminjaman {
-    private static Abdul07095_JenisAnggotaEntity ja = new Abdul07095_JenisAnggotaEntity();
-    private static String [] statusPeminjaman = {"Belum Dikembalikan", "Dikembalikan"};
-    
     JFrame peminjamanFrame = new JFrame();
     JTable tabelPinjam = new JTable();
-    JScrollPane scrollable = new JScrollPane(tabelPinjam);
     JButton btnKembali, btnBaru, btnSimpan, btnCariAnggota, btnCariBuku;
-    JLabel admin, noidLabel, kodeBukuLabel, noAnggotaLabel, namaAnggotaLabel, jenisAnggotaLabel;
+    JLabel noAnggotaLabel, namaAnggotaLabel, jenisAnggotaLabel;
     JTextField txtNoid, txtKodeBuku;
-    JPanel panelAnggota;
+    
     DefaultTableModel dtmPeminjaman;
-    int indexAnggota = -1;
-    int indexBuku = -1;
+    private int indexAnggota = -1;
+    private int indexBuku = -1;
     
     public Abdul07095_GUIPeminjaman(){
         initComponents();
         setKolom();
         txtKodeBuku.setEditable(false);
         btnCariBuku.setEnabled(false);
-        System.out.println("No Peminjaman" + generateNoPinjam());
     }
     
     private void initComponents(){
@@ -46,6 +41,11 @@ public class Abdul07095_GUIPeminjaman {
         peminjamanFrame.setLayout(null);
         peminjamanFrame.setTitle("Form Peminjaman");
          
+        JScrollPane scrollable = new JScrollPane(tabelPinjam);
+        JPanel panelAnggota;
+        JLabel noidLabel;
+        JLabel kodeBukuLabel;
+        
         // Cari Anggota
         noidLabel = new JLabel("No Anggota");
         noidLabel.setBounds(30, 30, 100, 30);
@@ -198,7 +198,7 @@ public class Abdul07095_GUIPeminjaman {
         String no;
         Date dt = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyy");
-        int jml = Objctrl.pinjam_c.viewPeminjaman().size();
+        int jml = Objctrl.pinjam_c.listPeminjaman().size();
         if(jml>0){
             no = "PJ"+formatter.format(dt)+""+jml;
         }else{
@@ -234,7 +234,7 @@ public class Abdul07095_GUIPeminjaman {
             }else{
                 noAnggotaLabel.setText(Objctrl.anggota_c.getDetail(indexAnggota).getNoId());
                 namaAnggotaLabel.setText(Objctrl.anggota_c.getDetail(indexAnggota).getNama());
-                jenisAnggotaLabel.setText(ja.jenisAnggota[Objctrl.anggota_c.getDetail(indexAnggota).getJenisAnggota()]);
+                jenisAnggotaLabel.setText(Objctrl.ja.jenisAnggota[Objctrl.anggota_c.getDetail(indexAnggota).getJenisAnggota()]);
                 
                 txtKodeBuku.setEditable(true);
                 btnCariBuku.setEnabled(true);
@@ -314,18 +314,18 @@ public class Abdul07095_GUIPeminjaman {
         System.out.println("No. |  Nama Anggota  |  Buku  |  Tgl Pinjam  |  Tgl Kembali  |  Status");
         System.out.println("------------------------------------------------------------------------------");
         
-        if(Objctrl.pinjam_c.viewPeminjaman().size()>0){
-            for (int i=0;i<Objctrl.pinjam_c.viewPeminjaman().size();i++) {
-                String namaAnggota = Objctrl.pinjam_c.viewPeminjaman().get(i).getAnggota().getNoId()+ " - " +Objctrl.pinjam_c.viewPeminjaman().get(i).getAnggota().getNama(); 
-                String buku = Objctrl.pinjam_c.viewPeminjaman().get(i).getBuku().getKodeBuku()+ " - " +Objctrl.pinjam_c.viewPeminjaman().get(i).getBuku().getJudulBuku(); 
+        if(Objctrl.pinjam_c.listPeminjaman().size()>0){
+            for (int i=0;i<Objctrl.pinjam_c.listPeminjaman().size();i++) {
+                String namaAnggota = Objctrl.pinjam_c.listPeminjaman().get(i).getAnggota().getNoId()+ " - " +Objctrl.pinjam_c.listPeminjaman().get(i).getAnggota().getNama(); 
+                String buku = Objctrl.pinjam_c.listPeminjaman().get(i).getBuku().getKodeBuku()+ " - " +Objctrl.pinjam_c.listPeminjaman().get(i).getBuku().getJudulBuku(); 
                 
                 System.out.println(
                         (i+1)+".  |  "
                         + namaAnggota +"  |  "
                         + buku +"  |  "
-                        + formatter.format(Objctrl.pinjam_c.viewPeminjaman().get(i).getTglPinjam())+"  |  "
-                        + formatter.format(Objctrl.pinjam_c.viewPeminjaman().get(i).getTglKembali())+"  |  "
-                        + statusPeminjaman[Integer.parseInt(Objctrl.pinjam_c.viewPeminjaman().get(i).getStatus())]);
+                        + formatter.format(Objctrl.pinjam_c.listPeminjaman().get(i).getTglPinjam())+"  |  "
+                        + formatter.format(Objctrl.pinjam_c.listPeminjaman().get(i).getTglKembali())+"  |  "
+                        + Objctrl.statusPeminjaman[Integer.parseInt(Objctrl.pinjam_c.listPeminjaman().get(i).getStatus())]);
                 System.out.println("------------------------------------------------------------------------------");
             }
         }else{

@@ -16,7 +16,7 @@ public class Abdul07095_PeminjamanController {
         pinjam_m = new Abdul07095_PeminjamanModel();
     }
     
-    public ArrayList<Abdul07095_PeminjamanEntity> viewPeminjaman(){
+    public ArrayList<Abdul07095_PeminjamanEntity> listPeminjaman(){
         return pinjam_m.getListPeminjaman();
     }
     

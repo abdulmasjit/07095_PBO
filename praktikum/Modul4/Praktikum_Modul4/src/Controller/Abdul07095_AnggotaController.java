@@ -12,7 +12,7 @@ public class Abdul07095_AnggotaController {
         anggota_m = new Abdul07095_AnggotaModel();
     }
     
-    public ArrayList<Abdul07095_AnggotaEntity> viewAnggota(){
+    public ArrayList<Abdul07095_AnggotaEntity> listAnggota(){
         return anggota_m.getListAnggota();
     }
     

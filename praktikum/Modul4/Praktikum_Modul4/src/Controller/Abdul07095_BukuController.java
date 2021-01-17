@@ -12,7 +12,7 @@ public class Abdul07095_BukuController {
         buku_m = new Abdul07095_BukuModel();
     }
     
-    public ArrayList<Abdul07095_BukuEntity> viewBuku(){
+    public ArrayList<Abdul07095_BukuEntity> listBuku(){
         return buku_m.getListBuku();
     }
     
