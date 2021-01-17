@@ -16,12 +16,12 @@ public class Abdul07095_GUIBuku {
     JFrame bukuFrame = new JFrame();
     JTable tabelbuku = new JTable();
     JScrollPane scrollaslab = new JScrollPane(tabelbuku);
-    JButton btnBack, btnReset, btnSimpan, btnEdit, btnHapus;
+    JButton btnKembali, btnReset, btnSimpan, btnEdit, btnHapus;
     JLabel admin, kodebukulabel, judullabel, pengaranglabel, tahunterbitlabel, stoklabel;
     JTextField kodebukutext, judultext, pengarangtext, tahunterbitext, stoktext;
     int selectedIndex = -1;
     public Abdul07095_GUIBuku(){
-        bukuFrame.setSize(645, 540);
+        bukuFrame.setSize(645, 580);
         bukuFrame.setLayout(null);
         bukuFrame.setTitle("Form Buku");
             
@@ -81,11 +81,14 @@ public class Abdul07095_GUIBuku {
         btnHapus.setBounds(380, 220, 100, 30);
         bukuFrame.add(btnHapus);
         
-//        Objctrl.buku_c.dataBukuDefault();
         scrollaslab.setBounds(30, 270, 570, 200);
         tabelbuku.setModel(Objctrl.buku_c.loadDataBuku());
         bukuFrame.add(scrollaslab);
-            
+         
+        btnKembali = new JButton("Kembali");
+        btnKembali.setBounds(30, 480, 100, 30);
+        bukuFrame.add(btnKembali);
+        
         bukuFrame.setLocationRelativeTo(null);
         bukuFrame.setVisible(true);
         bukuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -94,13 +97,13 @@ public class Abdul07095_GUIBuku {
         btnEdit.setEnabled(false);
         btnHapus.setEnabled(false);
         
-//        back.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent ae) {
-//                bukuFrame.dispose();
-//                GUI men = new GUI();
-//            }
-//        });
+        btnKembali.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                bukuFrame.dispose();
+                Abdul07095_GUIMenu men = new Abdul07095_GUIMenu();
+            }
+        });
             
         btnReset.addActionListener(new ActionListener() {
             @Override

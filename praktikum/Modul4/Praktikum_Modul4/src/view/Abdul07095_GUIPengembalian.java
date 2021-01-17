@@ -40,7 +40,7 @@ public class Abdul07095_GUIPengembalian {
     private void initComponents(){
         pengembalianFrame.setSize(800, 570);
         pengembalianFrame.setLayout(null);
-        pengembalianFrame.setTitle("Form Peminjaman");
+        pengembalianFrame.setTitle("Form Pengembalian");
          
         // Cari Anggota
         noidLabel = new JLabel("No Anggota");
@@ -136,7 +136,7 @@ public class Abdul07095_GUIPengembalian {
         btnKembali.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-//                pengembalianFrame.dispose();
+                pengembalianFrame.dispose();
                 Abdul07095_GUIMenu menu = new Abdul07095_GUIMenu();
             }
         });

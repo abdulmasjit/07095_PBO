@@ -15,13 +15,13 @@ public class Abdul07095_GUIAnggota {
     JFrame anggotaFrame = new JFrame();
     JTable tabelAnggota = new JTable();
     JScrollPane scrollable = new JScrollPane(tabelAnggota);
-    JButton btnBack, btnReset, btnSimpan, btnEdit, btnHapus;
+    JButton btnKembali, btnReset, btnSimpan, btnEdit, btnHapus;
     JLabel admin, noidLabel, namaLabel, notelpLabel, jenisLabel;
     JTextField txtNoid, txtNama, txtNotelp;
     JComboBox cmbJenis;
     int selectedIndex = -1;
     public Abdul07095_GUIAnggota(){
-        anggotaFrame.setSize(645, 510);
+        anggotaFrame.setSize(645, 540);
         anggotaFrame.setLayout(null);
         anggotaFrame.setTitle("Form Anggota");
             
@@ -77,6 +77,10 @@ public class Abdul07095_GUIAnggota {
         tabelAnggota.setModel(Objctrl.anggota_c.loadDataAnggota());
         anggotaFrame.add(scrollable);
             
+        btnKembali = new JButton("Kembali");
+        btnKembali.setBounds(30, 450, 100, 30);
+        anggotaFrame.add(btnKembali);
+        
         anggotaFrame.setLocationRelativeTo(null);
         anggotaFrame.setVisible(true);
         anggotaFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,21 +89,19 @@ public class Abdul07095_GUIAnggota {
         btnEdit.setEnabled(false);
         btnHapus.setEnabled(false);
         
-//        back.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent ae) {
-//                anggotaFrame.dispose();
-//                GUI men = new GUI();
-//            }
-//        });
+        btnKembali.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                anggotaFrame.dispose();
+                Abdul07095_GUIMenu men = new Abdul07095_GUIMenu();
+            }
+        });
             
         btnReset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 // reset
-//                reset();
-                anggotaFrame.dispose();
-                Abdul07095_GUIMenu menu = new Abdul07095_GUIMenu();
+                reset();
             }
         });
         

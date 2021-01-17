@@ -155,7 +155,7 @@ public class Abdul07095_GUIPeminjaman {
         btnKembali.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-//                peminjamanFrame.dispose();
+                peminjamanFrame.dispose();
                 Abdul07095_GUIMenu menu = new Abdul07095_GUIMenu();
             }
         });
@@ -221,7 +221,6 @@ public class Abdul07095_GUIPeminjaman {
     
     public void cariAnggota(){
         try{
-//            anggota_c.dataAnggotaDefault();
             String noId = txtNoid.getText();
             indexAnggota = Objctrl.anggota_c.cari(noId);
             if(indexAnggota==-1){

@@ -1,14 +1,16 @@
 package Controller;
-
 import Entity.Abdul07095_AnggotaEntity;
 import Entity.Abdul07095_BukuEntity;
 import Entity.Abdul07095_PeminjamanEntity;
 import Model.Abdul07095_PeminjamanModel;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.table.DefaultTableModel;
 
 public class Abdul07095_PeminjamanController {
     Abdul07095_PeminjamanModel pinjam_m;
+    private String [] statusPeminjaman = {"Belum Dikembalikan", "Dikembalikan"};
 
     public Abdul07095_PeminjamanController() {
         pinjam_m = new Abdul07095_PeminjamanModel();
@@ -16,6 +18,27 @@ public class Abdul07095_PeminjamanController {
     
     public ArrayList<Abdul07095_PeminjamanEntity> viewPeminjaman(){
         return pinjam_m.getListPeminjaman();
+    }
+    
+    public DefaultTableModel loadDataPeminjaman(){
+        DefaultTableModel dtmPeminjaman = new DefaultTableModel();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Object[] kolom = {"Nama Anggota","Buku","Tanggal Pinjam","Tanggal Kembali","Status"};
+        dtmPeminjaman.setColumnIdentifiers(kolom);
+        int size = pinjam_m.getListPeminjaman().size();
+        for (int i=0; i<size; i++){
+            String namaAnggota = pinjam_m.getListPeminjaman().get(i).getAnggota().getNoId()+ " - " +pinjam_m.getListPeminjaman().get(i).getAnggota().getNama(); 
+            String buku = pinjam_m.getListPeminjaman().get(i).getBuku().getKodeBuku()+ " - " +pinjam_m.getListPeminjaman().get(i).getBuku().getJudulBuku(); 
+             Object[] data = {
+                namaAnggota,
+                buku,
+                formatter.format(pinjam_m.getListPeminjaman().get(i).getTglPinjam()),
+                formatter.format(pinjam_m.getListPeminjaman().get(i).getTglKembali()),
+                statusPeminjaman[Integer.parseInt(pinjam_m.getListPeminjaman().get(i).getStatus())]
+            };
+            dtmPeminjaman.addRow(data);
+        }
+        return dtmPeminjaman;
     }
     
     public void insertPeminjaman(Abdul07095_BukuEntity buku, Abdul07095_AnggotaEntity anggota,int jumlah, Date tglPinjam, Date tglKembali){

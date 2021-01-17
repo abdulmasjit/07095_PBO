@@ -16,7 +16,7 @@ import javax.swing.JToolBar;
  */
 public class Abdul07095_GUIMenu {
     JFrame menuFrame = new JFrame();
-    JButton menuBuku, menuAnggota, menuDataPeminjaman, menuPeminjaman, menuPengembalian;
+    JButton menuBuku, menuAnggota, menuDataPeminjaman, menuPeminjaman, menuPengembalian, logout;
     
     public Abdul07095_GUIMenu(){
         menuFrame.setSize(700, 500);
@@ -43,6 +43,10 @@ public class Abdul07095_GUIMenu {
         menuPengembalian.setBounds(270, 140, 150, 70);
         menuFrame.add(menuPengembalian);
         
+        logout = new JButton("Logout");
+        logout.setBounds(440, 140, 150, 70);
+        menuFrame.add(logout);
+        
         menuFrame.setLocationRelativeTo(null);
         menuFrame.setVisible(true);
         menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,7 +70,7 @@ public class Abdul07095_GUIMenu {
         menuDataPeminjaman.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-//                menuFrame.dispose();
+                menuFrame.dispose();
                 Abdul07095_GUIDataPeminjaman dp = new Abdul07095_GUIDataPeminjaman();
             }
         });
@@ -74,17 +78,24 @@ public class Abdul07095_GUIMenu {
         menuPeminjaman.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-//                menuFrame.dispose();
+                menuFrame.dispose();
                 Abdul07095_GUIPeminjaman pinjam = new Abdul07095_GUIPeminjaman();
-//                pinjam.pinjam_c.viewPeminjaman();
             }
         });
         
         menuPengembalian.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-//                menuFrame.dispose();
+                menuFrame.dispose();
                 Abdul07095_GUIPengembalian kembali = new Abdul07095_GUIPengembalian();
+            }
+        });
+        
+        logout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                menuFrame.dispose();
+                Abdul07095_GUILogin login = new Abdul07095_GUILogin();
             }
         });
         
