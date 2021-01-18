@@ -1,6 +1,5 @@
 package Main;
-import view.Abdul07095_GUILogin;
-import view.Objctrl;
+import view.*;
 
 /**
  *

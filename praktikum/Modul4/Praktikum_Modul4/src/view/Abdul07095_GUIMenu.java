@@ -1,4 +1,6 @@
 package view;
+import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -15,34 +17,46 @@ public class Abdul07095_GUIMenu {
     }
     
     private void initComponents(){
-        menuFrame.setSize(700, 500);
+        menuFrame.setSize(710, 400);
         menuFrame.setLayout(null);
         menuFrame.setTitle("Menu");
-        
+        menuFrame.getContentPane().setBackground(new java.awt.Color(103,25,220));
         JButton menuBuku, menuAnggota, menuDataPeminjaman, menuPeminjaman, menuPengembalian, logout;
         
         menuBuku = new JButton("Buku");
-        menuBuku.setBounds(100, 50, 150, 70);
+        menuBuku.setBounds(30, 50, 200, 80);
+        menuBuku.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/books.png")));
+        menuBuku.setBackground(new java.awt.Color(255, 255, 255));
         menuFrame.add(menuBuku);
         
         menuAnggota = new JButton("Anggota");
-        menuAnggota.setBounds(270, 50, 150, 70);
+        menuAnggota.setBounds(245, 50, 200, 80);
+        menuAnggota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/add-user.png")));
+        menuAnggota.setBackground(new java.awt.Color(255, 255, 255));
         menuFrame.add(menuAnggota);
         
         menuDataPeminjaman = new JButton("Data Peminjaman");
-        menuDataPeminjaman.setBounds(440, 50, 150, 70);
+        menuDataPeminjaman.setBounds(460, 50, 200, 80);
+        menuDataPeminjaman.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/data-pinjam.png")));
+        menuDataPeminjaman.setBackground(new java.awt.Color(255, 255, 255));
         menuFrame.add(menuDataPeminjaman);
         
         menuPeminjaman = new JButton("Peminjaman");
-        menuPeminjaman.setBounds(100, 140, 150, 70);
+        menuPeminjaman.setBounds(30, 145, 200, 80);
+        menuPeminjaman.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/transaksi.png")));
+        menuPeminjaman.setBackground(new java.awt.Color(255, 255, 255));
         menuFrame.add(menuPeminjaman);
         
         menuPengembalian = new JButton("Pengembalian");
-        menuPengembalian.setBounds(270, 140, 150, 70);
+        menuPengembalian.setBounds(245, 145, 200, 80);
+        menuPengembalian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/sinkron.png")));
+        menuPengembalian.setBackground(new java.awt.Color(255, 255, 255));
         menuFrame.add(menuPengembalian);
         
         logout = new JButton("Logout");
-        logout.setBounds(440, 140, 150, 70);
+        logout.setBounds(460, 145, 200, 80);
+        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/sign-out.png")));
+        logout.setBackground(new java.awt.Color(255, 255, 255));
         menuFrame.add(logout);
         
         menuFrame.setLocationRelativeTo(null);
@@ -97,8 +111,6 @@ public class Abdul07095_GUIMenu {
             }
         });
         
-//        
-//      
 //        JFrame myframe = new JFrame("JToolBar Example");  
 //        myframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
 //        JToolBar toolbar = new JToolBar();  
