@@ -1,22 +1,31 @@
 package Entity;
 public class Petugas extends WargaPerpus{
-    private String password;
+    private String username, password;
     
-    public Petugas(String no_id, String nama, String alamat, String no_telp, String password){
-        super(no_id, nama, alamat, no_telp);
+    // Constructor    
+    public Petugas(String no_id, String nama, String no_telp, String username, String password){
+        super(no_id, nama, no_telp);
+        this.username = username;
         this.password = password;
     }
     
-    public void setPassword(String password){
+    public Petugas(){
+    
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
         this.password = password;
-    }
-    
-    @Override
-    public String getNoId(){
-        return this.no_id;
-    }
-    
-    public String getPassword(){
-        return this.password;
     }
 }

@@ -1,102 +1,93 @@
 package Controller;
-import Model.BukuModel;
 import Entity.Buku;
-import java.util.Scanner;
+import Model.BukuModel;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 public class BukuController {
-    // Instansiasi Object    
-    BukuModel buku_m = new BukuModel();
-    Scanner input = new Scanner(System.in);
-    
-    // Constructor    
-    public BukuController(){
-        
+    BukuModel buku_m;
+
+    public BukuController() {
+        buku_m = new BukuModel();
     }
     
-    // Method    
-    public void addBuku(){
-        System.out.print("Input Kode Buku : ");
-        String kode_buku = input.next();
-        
-        System.out.print("Input Judul : ");
-        String judul = input.next();
-        
-        System.out.print("Input Pengarang : ");
-        String pengarang = input.next();
-        
-        System.out.print("Input Tahun Terbit = ");
-        String tahun_terbit = input.next();
-        
-        System.out.print("Input Stok = ");
-        int stok = input.nextInt();
-        
-        // Add Object To Class Buku     
-        buku_m.insert(new Buku(kode_buku, judul, pengarang, tahun_terbit, stok));
-        System.out.print("Data Buku Berhasil Disimpan !!\n");
+    public ArrayList<Buku> listBuku(){
+        return buku_m.getListBuku();
     }
     
-    public void viewListBuku(){
-        if(buku_m.getListBuku().isEmpty()){
-            System.out.println("Data Buku Kosong\n");
-        }else{
-            int no = 0;
-            for (int i = 0; i < buku_m.getListBuku().size(); i++) {
-                no++;
-                System.out.println("[Buku " + no + "]");
-                System.out.println("Kode Buku    : " + buku_m.getListBuku().get(i).getKodeBuku());
-                System.out.println("Judul        : " + buku_m.getListBuku().get(i).getJudul());
-                System.out.println("Pengarang    : " + buku_m.getListBuku().get(i).getPengarang());
-                System.out.println("Tahun Terbit : " + buku_m.getListBuku().get(i).getTahunTerbit());
-                System.out.println("Stok         : " + buku_m.getListBuku().get(i).getStok());
-            }
+    public void dataBukuDefault(){  
+        String kodeBuku [] = {"BK001", "BK002", "BK003"};
+        String judul [] = {"Buku Affilate Marketing", "Buku Javascript Async With Ajax", "Buku Postgre SQL Untuk Pemula"};
+        String pengarang [] = {"Risky Ade", "Dian Indah", "Ahmad Maulana"};    
+        String tahunTerbit [] = {"2019", "2018", "2020"};    
+        int stok [] = {50, 30, 30};
+        for (int i = 0; i < kodeBuku.length; i++) {
+            buku_m.insert(new Buku(kodeBuku[i], judul[i], pengarang[i], tahunTerbit[i], stok[i]));
         }
     }
     
-    public void editBuku(){
+    public DefaultTableModel loadDataBuku(){
+        DefaultTableModel dtmdaftarprak = new DefaultTableModel();
+        Object[] kolom = {"Kode Buku","Judul","Pengarang","Tahun Terbit","Stok"};
+        dtmdaftarprak.setColumnIdentifiers(kolom);
+        int size = buku_m.getListBuku().size();
+        for (int i=0; i<size; i++){
+             Object[] data = {
+                buku_m.getListBuku().get(i).getKodeBuku(),
+                buku_m.getListBuku().get(i).getJudulBuku(),
+                buku_m.getListBuku().get(i).getPengarang(),
+                buku_m.getListBuku().get(i).getTahunTerbit(),
+                buku_m.getListBuku().get(i).getStok(),
+            };
+            dtmdaftarprak.addRow(data);
+        }
+        return dtmdaftarprak;
+    }
+    
+    public void insertBuku(String kodeBuku, String judul, String pengarang, String tahunTerbit, int stok){
+        Buku data = new Buku();
+        data.setKodeBuku(kodeBuku);
+        data.setJudulBuku(judul);
+        data.setPengarang(pengarang);
+        data.setTahunTerbit(tahunTerbit);
+        data.setStok(stok);
+        // Insert Objection
+        buku_m.insert(data);
+    }
+    
+    public void updateBuku(int index, String kodeBuku, String judul, String pengarang, String tahunTerbit, int stok){
+        Buku data = new Buku();
+        data.setKodeBuku(kodeBuku);
+        data.setJudulBuku(judul);
+        data.setPengarang(pengarang);
+        data.setTahunTerbit(tahunTerbit);
+        data.setStok(stok);
+        // Update Objection
+        buku_m.update(index, data);
+    }
+    
+    public void deleteBuku(int index){
+        // Delete Objection
+        buku_m.delete(index);
+    }
+    
+    public Buku getDetail(int index){
+        return buku_m.getListBuku().get(index);
+    }
+    
+    public int cari(String kode){
+        int result = -1;
         if(buku_m.getListBuku().size()>0){
-            for (int i = 0; i < buku_m.getListBuku().size(); i++) {
-                System.out.println("["+i+"] "+buku_m.getListBuku().get(i).getJudul());
+            for(int i = 0; i < buku_m.getListBuku().size(); i++){
+                if(buku_m.getListBuku().get(i).getKodeBuku().equals(kode)){
+                    result = i;
+                    break;
+                }else{
+                    result = -1;
+                }     
             }
-             
-            System.out.print("Pilih Index Buku : ");
-            int selectIndex = input.nextInt();
-            
-            // Input data            
-            System.out.print("Input Kode Buku : ");
-            String kode_Buku = input.next();
-
-            System.out.print("Input Judul : ");
-            String judul = input.next();
-
-            System.out.print("Input Pengarang : ");
-            String pengarang = input.next();
-
-            System.out.print("Input Tahun Terbit = ");
-            String tahun_terbit = input.next();
-            
-            System.out.print("Input Stok = ");
-            int stok = input.nextInt();
-
-            buku_m.update(selectIndex, new Buku(kode_Buku, judul, pengarang, tahun_terbit, stok));
-            System.out.print("Data Buku Berhasil Diubah !!\n");
-        }else{
-            System.out.println("Data Buku Kosong\n");
         }
-    }
-    
-    public void deleteBuku(){
-        if(buku_m.getListBuku().size()>0){
-            for (int i = 0; i < buku_m.getListBuku().size(); i++) {
-                System.out.println("["+i+"] "+buku_m.getListBuku().get(i).getJudul());
-            }
-            
-            System.out.print("Pilih Index Buku : ");
-            int selectIndex = input.nextInt();
-            
-            buku_m.delete(selectIndex);
-            System.out.print("Data Buku Berhasil Dihapus !!\n");
-        }else{
-            System.out.println("Data Buku Kosong\n");
-        }
+        return result;
     }
 }

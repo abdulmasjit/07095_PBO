@@ -1,27 +1,24 @@
 package Entity;
-public class Anggota extends WargaPerpus {
-    private String jenis_anggota;
-    /*  Jenis Anggota
-        JA01 -> Guru
-        JA02 -> Siswa
-    */
-    public Anggota(String no_id, String nama, String alamat, String no_telp, String jenis_anggota){
-        super(no_id, nama, alamat, no_telp);
-        this.jenis_anggota = jenis_anggota;
-    }
-
-    // Setter / Mutator      
-    public void setJenisAnggota(String jenis_anggota){
-        this.jenis_anggota = jenis_anggota;
-    }    
+public class Anggota extends WargaPerpus{
+    private int jenisAnggota;
     
-    @Override
-    public String getNoId(){
-        return this.no_id;
+    // Constructor    
+    public Anggota(String no_id, String nama, String no_telp, int jenisAnggota){
+        super(no_id, nama, no_telp);
+        this.jenisAnggota = jenisAnggota;
     }
     
-    // Selector / Getter    
-    public String getJenisAnggota(){
-        return this.jenis_anggota;
+    public Anggota(){
+    
+    }
+    
+    // Setter / Mutator   
+    public void setJenisAnggota(int jenisAnggota){
+        this.jenisAnggota = jenisAnggota;
+    }
+    
+    
+    public int getJenisAnggota(){
+        return this.jenisAnggota;
     }
 }

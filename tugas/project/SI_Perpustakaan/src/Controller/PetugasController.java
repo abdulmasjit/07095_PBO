@@ -1,23 +1,46 @@
 package Controller;
-import Model.PetugasModel;
 import Entity.Petugas;
+import Model.PetugasModel;
+import java.util.ArrayList;
 
+/**
+ *
+ * @author Masjit Subekti
+ */
 public class PetugasController {
-    public PetugasModel petugas_m;
-    
+    PetugasModel petugas_m;
+
     public PetugasController() {
-       petugas_m = new PetugasModel();
+        petugas_m = new PetugasModel();
     }
-     
-    public void DataPetugas(){
-        String idPetugas [] = {"001", "002", "003", "004", "005"};
-        String namaPetugas [] = {"Risky", "Dian", "Bagus", "Aldo", "Sabrina"};
-        String alamatPetugas [] = {"Rungkut Kidul", "Brebek", "Semolowaru", "Gunung Sari", "Wiyung"};    
-        String telpPetugas [] = {"085334345051", "085334345052", "085334345053", "085334345054", "085334345055"};    
-        String passwordPetugas [] = {"001", "002", "003", "004", "005"};
-        
-        for (int i = 0; i < idPetugas.length; i++) {
-            petugas_m.insert(new Petugas(idPetugas[i], namaPetugas[i], alamatPetugas[i], telpPetugas[i], passwordPetugas[i]));
+    
+    public ArrayList<Petugas> listPetugas(){
+        return petugas_m.getListPetugas();
+    }
+    
+    public void dataPetugas(){  
+        String noId [] = {"US001"};
+        String nama [] = {"Superadmin"};
+        String noTelp [] = {"085334545054"};
+        String username [] = {"superadmin"};
+        String password [] = {"123456"};    
+        for (int i = 0; i < noId.length; i++) {
+            petugas_m.insert(new Petugas(noId[i], nama[i], noTelp[i], username[i], password[i]));
         }
+    }
+    
+    public int getUser(String username, String password){
+        int result = -1;
+        if(petugas_m.getListPetugas().size()>0){
+            for(int i = 0; i < petugas_m.getListPetugas().size(); i++){
+                if(petugas_m.getListPetugas().get(i).getUsername().equals(username) && petugas_m.getListPetugas().get(i).getPassword().equals(password)){
+                    result = i;
+                    break;
+                }else{
+                    result = -1;
+                }     
+            }
+        }
+        return result;
     }
 }

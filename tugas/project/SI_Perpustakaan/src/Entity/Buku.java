@@ -1,57 +1,59 @@
 package Entity;
 public class Buku {
-    // Attribut    
-    private String kode_buku, judul_buku, pengarang, tahun_terbit;
+     // Attribut    
+    private String kodeBuku, judulBuku, pengarang, tahunTerbit;
     private int stok;
     
     // Constructor
-    public Buku(String kode_buku, String judul_buku, String pengarang, String tahun_terbit, int stok){
-        this.kode_buku = kode_buku;
-        this.judul_buku = judul_buku;
+    public Buku(String kodeBuku, String judulBuku, String pengarang, String tahunTerbit, int stok){
+        this.kodeBuku = kodeBuku;
+        this.judulBuku = judulBuku;
         this.pengarang = pengarang;
-        this.tahun_terbit = tahun_terbit;
+        this.tahunTerbit = tahunTerbit;
         this.stok = stok;
     }
     
-    // Setter / Mutator
-    public void setKodeBuku(String kode_buku){
-        this.kode_buku = kode_buku;
+    public Buku(){
+        
     }
-    
-    public void setJudul(String judul){
-        this.judul_buku = judul;
+
+    public String getKodeBuku() {
+        return kodeBuku;
     }
-    
-    public void setPengarang(String pengarang){
+
+    public void setKodeBuku(String kodeBuku) {
+        this.kodeBuku = kodeBuku;
+    }
+
+    public String getJudulBuku() {
+        return judulBuku;
+    }
+
+    public void setJudulBuku(String judulBuku) {
+        this.judulBuku = judulBuku;
+    }
+
+    public String getPengarang() {
+        return pengarang;
+    }
+
+    public void setPengarang(String pengarang) {
         this.pengarang = pengarang;
     }
-    
-    public void setTahunTerbit(String tahun_terbit){
-        this.tahun_terbit = tahun_terbit;
+
+    public String getTahunTerbit() {
+        return tahunTerbit;
     }
-    
-    public void setStok(int stok){
+
+    public void setTahunTerbit(String tahunTerbit) {
+        this.tahunTerbit = tahunTerbit;
+    }
+
+    public int getStok() {
+        return stok;
+    }
+
+    public void setStok(int stok) {
         this.stok = stok;
-    }
-    
-    // Selector / Getter
-    public String getKodeBuku(){
-        return this.kode_buku;
-    }
-    
-    public String getJudul(){
-        return this.judul_buku;
-    }
-    
-    public String getPengarang(){
-        return this.pengarang;
-    }
-    
-    public String getTahunTerbit(){
-        return this.tahun_terbit;
-    }
-    
-    public int getStok(){
-        return this.stok;
     }
 }

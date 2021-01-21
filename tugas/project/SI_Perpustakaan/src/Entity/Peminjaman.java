@@ -1,58 +1,83 @@
 package Entity;
-
 import java.util.Date;
+
 public class Peminjaman {
-    private String no_peminjaman;
-    private int index_Buku,index_Anggota,jumlah;      
-    private Date tgl_peminjaman;
+    // Status = "0" -> Belum dikembalikan, 
+    //          "1" -> Sudah Dikembalikan
     
-    public Peminjaman(String no_peminjaman,int index_Buku,int index_Anggota,int jumlah,Date tgl_peminjaman){
-        this.no_peminjaman=no_peminjaman;
-        this.index_Buku=index_Buku;
-        this.index_Anggota=index_Anggota;
+    private String noPeminjaman, status;
+    private Buku buku;
+    private Anggota anggota;
+    private int jumlah;      
+    private Date tglPinjam, tglKembali;
+    
+    public Peminjaman(String noPeminjaman, Buku buku, Anggota anggota,int jumlah, Date tglPinjam, Date tglKembali, String status){
+        this.noPeminjaman=noPeminjaman;
+        this.buku=buku;
+        this.anggota=anggota;
         this.jumlah=jumlah;
-        this.tgl_peminjaman=tgl_peminjaman;
+        this.tglPinjam=tglPinjam;
+        this.tglKembali=tglKembali;
+        this.status=status;
+    }
+    
+    public Peminjaman(){
         
     }
 
-    public void setNo_peminjaman(String no_peminjaman) {
-        this.no_peminjaman = no_peminjaman;
+    public String getNoPeminjaman() {
+        return noPeminjaman;
     }
 
-    public void setIndex_Buku(int index_Buku) {
-        this.index_Buku = index_Buku;
+    public void setNoPeminjaman(String noPeminjaman) {
+        this.noPeminjaman = noPeminjaman;
     }
 
-    public void setIndex_Anggota(int index_Anggota) {
-        this.index_Anggota = index_Anggota;
+    public String getStatus() {
+        return status;
     }
 
-    public void setJumlah(int jumlah) {
-        this.jumlah = jumlah;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public void setTgl_peminjaman(Date tgl_peminjaman) {
-        this.tgl_peminjaman = tgl_peminjaman;
+    public Buku getBuku() {
+        return buku;
     }
 
-    public String getNo_peminjaman() {
-        return no_peminjaman;
+    public void setBuku(Buku buku) {
+        this.buku = buku;
     }
 
-    public int getIndex_Buku() {
-        return index_Buku;
+    public Anggota getAnggota() {
+        return anggota;
     }
 
-    public int getIndex_Anggota() {
-        return index_Anggota;
+    public void setAnggota(Anggota anggota) {
+        this.anggota = anggota;
     }
 
     public int getJumlah() {
         return jumlah;
     }
 
-    public Date getTgl_peminjaman() {
-        return tgl_peminjaman;
-    }       
-            
+    public void setJumlah(int jumlah) {
+        this.jumlah = jumlah;
+    }
+
+    public Date getTglPinjam() {
+        return tglPinjam;
+    }
+
+    public void setTglPinjam(Date tglPinjam) {
+        this.tglPinjam = tglPinjam;
+    }
+
+    public Date getTglKembali() {
+        return tglKembali;
+    }
+
+    public void setTglKembali(Date tglKembali) {
+        this.tglKembali = tglKembali;
+    }
 }

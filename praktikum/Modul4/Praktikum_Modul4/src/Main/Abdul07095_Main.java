@@ -15,6 +15,8 @@ public class Abdul07095_Main {
     public static void main(String[] args) {
         Abdul07095_Main app = new Abdul07095_Main();
         System.out.println("Selamat Datang Di Sistem Informasi Perpustakaan !!");
+        
+        
         app.viewMenu();
     }
     
