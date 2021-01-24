@@ -8,10 +8,6 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-/**
- *
- * @author Masjit Subekti
- */
 public class GUIBuku {
     JFrame bukuFrame = new JFrame();
     JTable tabelbuku = new JTable();

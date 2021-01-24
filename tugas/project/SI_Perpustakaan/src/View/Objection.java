@@ -1,10 +1,7 @@
 package view;
 import Controller.*;
 import Entity.JenisAnggota;
-/**
- *
- * @author Masjit Subekti
- */
+
 public class Objection {
     public static AnggotaController anggota_c = new AnggotaController();
     public static BukuController buku_c = new BukuController();

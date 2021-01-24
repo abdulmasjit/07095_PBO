@@ -6,10 +6,6 @@ import Entity.JenisAnggota;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-/**
- *
- * @author Masjit Subekti
- */
 public class GUIAnggota {
     JFrame anggotaFrame = new JFrame();
     JTable tabelAnggota = new JTable();

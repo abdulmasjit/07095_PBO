@@ -3,24 +3,30 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Controller/Abdul07095_BukuController.java</file>
-            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Entity/Abdul07095_AnggotaEntity.java</file>
-            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Model/Abdul07095_PetugasModel.java</file>
+            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/view/Objctrl.java</file>
             <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/view/Abdul07095_GUIAnggota.java</file>
+            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/view/Abdul07095_GUIBuku.java</file>
             <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/view/Abdul07095_GUIDataPeminjaman.java</file>
             <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/view/Abdul07095_GUIMenu.java</file>
-            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/view/Abdul07095_GUIBuku.java</file>
-            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Main/Abdul07095_GUIMain.java</file>
             <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/view/Abdul07095_GUIPeminjaman.java</file>
             <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/view/Abdul07095_GUIPengembalian.java</file>
-            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/view/Objctrl.java</file>
             <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Controller/Abdul07095_PeminjamanController.java</file>
             <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/view/Abdul07095_GUILogin.java</file>
-            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Controller/Abdul07095_AnggotaController.java</file>
             <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Main/Abdul07095_Main.java</file>
-            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Model/Abdul07095_PeminjamanModel.java</file>
             <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Controller/Abdul07095_PetugasController.java</file>
             <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Entity/Abdul07095_PetugasEntity.java</file>
+            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Model/Abdul07095_PetugasModel.java</file>
+            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Model/Abdul07095_PeminjamanModel.java</file>
+            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Entity/Abdul07095_AnggotaEntity.java</file>
+            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Controller/Abdul07095_AnggotaController.java</file>
+            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Main/Abdul07095_GUIMain.java</file>
+            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Controller/Abdul07095_BukuController.java</file>
+            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Entity/Abdul07095_JenisAnggotaEntity.java</file>
+            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Entity/Abdul07095_WargaPerpus.java</file>
+            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Entity/Abdul07095_BukuEntity.java</file>
+            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Entity/Abdul07095_PeminjamanEntity.java</file>
+            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Model/Abdul07095_BukuModel.java</file>
+            <file>file:/D:/07095_PBO/praktikum/Modul4/Praktikum_Modul4/src/Model/Abdul07095_AnggotaModel.java</file>
         </group>
     </open-files>
 </project-private>

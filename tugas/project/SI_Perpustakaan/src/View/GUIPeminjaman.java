@@ -14,10 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;  
 
-/**
- *
- * @author Masjit Subekti
- */
 public class GUIPeminjaman {
     JFrame peminjamanFrame = new JFrame();
     JTable tabelPinjam = new JTable();

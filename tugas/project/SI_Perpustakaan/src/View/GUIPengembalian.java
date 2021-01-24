@@ -7,10 +7,6 @@ import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
 import java.text.SimpleDateFormat;  
 
-/**
- *
- * @author Masjit Subekti
- */
 public class GUIPengembalian {
     JFrame pengembalianFrame = new JFrame();
     JTable tabelPinjam = new JTable();

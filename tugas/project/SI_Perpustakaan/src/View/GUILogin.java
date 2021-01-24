@@ -6,10 +6,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
 
-/**
- *
- * @author Masjit Subekti
- */
 public class GUILogin {
     JFrame loginFrame = new JFrame();
     JButton btnLogin;

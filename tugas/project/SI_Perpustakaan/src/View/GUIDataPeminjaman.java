@@ -6,10 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-/**
- *
- * @author Masjit Subekti
- */
 public class GUIDataPeminjaman {
     JFrame dtpFrame = new JFrame();
     
