@@ -129,8 +129,7 @@ public class GUILogin {
                     loginFrame.dispose();
                     GUIMenu menu = new GUIMenu();
                 }else{
-                    // txtUsername.setText(null);
-                    // txtPassword.setText(null);
+                  
                     JOptionPane.showMessageDialog(null, "Oopss, Login Gagal !");
                 }
             }
